@@ -15,14 +15,48 @@ describe('Serializer', () => {
     });
 
     const result = userSerializer.serialize(rawData);
-
     const { meta, data } = result;
 
     expect(meta.type).toEqual('user');
-
     expect(data).toEqual({
       firstName: 'John',
       lastName: 'Doe',
+    });
+  });
+
+  test('should serialze a nested object', () => {
+    // raw data
+    const rawData = {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 27,
+      address: {
+        street: 'Markt',
+        number: '100',
+        city: 'Zonnedorp',
+        country: 'Belgium',
+      },
+    };
+
+    // serializer definition
+    const userSerializer = new Serializer('user', {
+      attributes: ['firstName', 'lastName', 'address'],
+      address: {
+        attributes: ['street', 'number'],
+      },
+    });
+
+    const result = userSerializer.serialize(rawData);
+    const { meta, data } = result;
+
+    expect(meta.type).toEqual('user');
+    expect(data).toEqual({
+      firstName: 'John',
+      lastName: 'Doe',
+      address: {
+        street: 'Markt',
+        number: '100',
+      }
     });
   });
 
