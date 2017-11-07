@@ -24,5 +24,13 @@ describe('Serializer', () => {
       firstName: 'John',
       lastName: 'Doe',
     });
-  })
+  });
+
+  test('should throw an exception when no resource is given', () => {
+    expect(() => {
+      new Serializer(null, {
+        attributes: ['firstName', 'lastName']
+      });
+    }).toThrow('Resource must be defined');
+  });
 });
