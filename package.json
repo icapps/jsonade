@@ -1,0 +1,18 @@
+{
+  "name": "jasonalize",
+  "version": "1.0.0",
+  "description": "Json de/serialization made for consistency",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/icapps/jasonalize",
+    "type": "git"
+  },
+  "author": "hoetmaaiers <robin.houdmeyers@icapps.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^21.2.1"
+  },
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
+}
