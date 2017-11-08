@@ -169,13 +169,13 @@ const errors = ErrorSerializer.serialize([error]);
 
 #### Returns
 
-- `errors (Object)`: object containing multiple errors. 
+- `errors (Object)`: object containing multiple errors.
 
 Every error can have these properties:
 
 
 | key  |  |
-|---|--- |---|
+|---|---|
 | status | required |
 | title | required |
 | id  | optional |
@@ -188,17 +188,17 @@ Every error can have these properties:
 
 ```json
 {
-	errors: [
-		{
-			"id": "ba4b9f14-5b83-4dfd-ac46-1c3868e1b3ec",
-			"status": 400, // same as http status code
-			"code": "2006", // application specific
-			"title": "Article not found",
-			"detail": "Article with id 892bb574-090d-4d63-a5b5-cb928d5f5c5f not found",
-			"meta": {
-				"stack": "NotFoundError: ..."
-			}
-		}
-	]
+  "errors": [
+    {
+      "id": "ba4b9f14-5b83-4dfd-ac46-1c3868e1b3ec",
+        "status": 400,
+        "code": "2006",
+        "title": "Article not found",
+        "detail": "Article with id 892bb574-090d-4d63-a5b5-cb928d5f5c5f not found",
+        "meta": {
+          "stack": "NotFoundError: ..."
+        }
+    }
+  ]
 }
 ```
