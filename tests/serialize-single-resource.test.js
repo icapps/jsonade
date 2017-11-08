@@ -1,6 +1,6 @@
 const { Serializer } = require('./../lib');
 
-describe('Serializer', () => {
+describe('Serializer single resource', () => {
   test('should serialze a flat dataset', () => {
     // raw data
     const rawData = {
