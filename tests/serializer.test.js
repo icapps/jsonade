@@ -8,4 +8,14 @@ describe('Serializer multiple resource', () => {
       });
     }).toThrow('Resource must be defined');
   });
+
+  test('should throw an exception when no totalCount is given for an array', () => {
+    expect(() => {
+      const userSerializer = new Serializer('user', {
+        attributes: ['firstName', 'lastName'],
+      });
+
+      return userSerializer.serialize([]);
+    }).toThrow('Option totalCount must be defined when serializing an array');
+  });
 });
