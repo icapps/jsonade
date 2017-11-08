@@ -91,7 +91,7 @@ Return a succesfull response for a single resource with root properties:
 
 ### Create single resource
 
-Successfull creation of a resouurce:
+Successfull creation of a resource:
 Request:
 
 - HTTP method: POST
@@ -100,12 +100,12 @@ Request:
 Response:
 
 - HTTP status code: 201
-- Body: created single resourse
+- Body: created single resource
 
 
 ### Update single resource
 
-Successfull update of a resouurce:
+Successfull update of a resource:
 
 Request:
 
@@ -115,12 +115,12 @@ Request:
 Response:
 
 - HTTP status code: 201
-- Body: updated single resourse
+- Body: updated single resource
 
 
 ### Delete single resource
 
-Successfull deleted of a resouurce:
+Successfull deleted of a resource:
 
 Request:
 
