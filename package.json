@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Json de/serialization made for consistency",
   "main": "index.js",
+  "engines" : {
+    "node" : ">=6"
+  },
   "repository": {
     "url": "https://github.com/icapps/jasonalize",
     "type": "git"

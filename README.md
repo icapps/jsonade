@@ -4,8 +4,6 @@ De/serialize json for consistency!
 
 [![Build Status](https://travis-ci.org/icapps/jasonalize.svg?branch=master)](https://travis-ci.org/icapps/jasonalize)
 
-Node version >= 6
-
 ## Installation
 
 ```bash
@@ -127,8 +125,7 @@ const mySerializer = new Serializer(resource, options);
 Options:
 
 - `attributes (Array)`: attributes to serialize
-- `transform (Function)`: A function to transform each record after the serialization, right before returning the result.
- 
+
 
 ### `serialize`
 
