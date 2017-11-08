@@ -21,10 +21,15 @@ describe('Serializer multiple resource', () => {
       attributes: ['firstName', 'lastName'],
     });
 
-    const result = userSerializer.serialize(rawData);
+    const result = userSerializer.serialize(rawData, { totalCount: 11 });
     const { meta, data } = result;
 
-    expect(meta.type).toEqual('user');
+    expect(meta).toEqual({
+      type: 'user',
+      count: 2,
+      totalCount: 11,
+    });
+
     expect(data).toEqual([
       {
         firstName: 'John',
@@ -60,10 +65,15 @@ describe('Serializer multiple resource', () => {
       },
     });
 
-    const result = userSerializer.serialize(rawData);
+    const result = userSerializer.serialize(rawData, { totalCount: 11 });
     const { meta, data } = result;
 
-    expect(meta.type).toEqual('user');
+    expect(meta).toEqual({
+      type: 'user',
+      count: 1,
+      totalCount: 11,
+    });
+
     expect(data).toEqual([
       {
         firstName: 'John',
@@ -99,10 +109,15 @@ describe('Serializer multiple resource', () => {
       },
     });
 
-    const result = userSerializer.serialize(rawData);
+    const result = userSerializer.serialize(rawData, { totalCount: 11 });
     const { meta, data } = result;
 
-    expect(meta.type).toEqual('user');
+    expect(meta).toEqual({
+      type: 'user',
+      count: 1,
+      totalCount: 11,
+    });
+
     expect(data).toEqual([
       {
         firstName: 'John',
