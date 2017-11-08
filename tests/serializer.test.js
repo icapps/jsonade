@@ -11,7 +11,7 @@ describe('Serializer', () => {
 
     // serializer definition
     const userSerializer = new Serializer('user', {
-      attributes: ['firstName', 'lastName']
+      attributes: ['firstName', 'lastName'],
     });
 
     const result = userSerializer.serialize(rawData);
@@ -56,7 +56,7 @@ describe('Serializer', () => {
       address: {
         street: 'Markt',
         number: '100',
-      }
+      },
     });
   });
 
@@ -98,8 +98,8 @@ describe('Serializer', () => {
 
   test('should throw an exception when no resource is given', () => {
     expect(() => {
-      new Serializer(null, {
-        attributes: ['firstName', 'lastName']
+      new Serializer(null, { // eslint-disable-line no-new
+        attributes: ['firstName', 'lastName'],
       });
     }).toThrow('Resource must be defined');
   });
