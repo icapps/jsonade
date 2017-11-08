@@ -107,6 +107,13 @@ const data = {
 const result = userSerializer.serialize(data);
 ```
 
+### Example serializing an error
+
+```javascript
+const { ErrorSerializer } = require('jasonalize');
+const errorResponse = ErrorSerializer.serialize(ex);
+```
+
 
 ## Serializer
 
@@ -126,6 +133,12 @@ Options:
 
 - `attributes (Array)`: attributes to serialize
 
+#### Returns
+
+Returns an instance of a custom serializer, ready to use for serializing data.
+
+
+## Serializer instance
 
 ### `serialize`
 
@@ -136,3 +149,56 @@ mySerializer.serialize(data);
 #### Arguments
 
 `data (Object|Array)`: Dataset to serialize.
+
+#### Returns
+
+Returns a serialized data respresentation of the given data.
+
+
+## ErrorSerializer
+
+### `serialize`
+
+#### Arguments
+
+`error (Object|Array)`: Error(s) to serialize.
+
+```javascript
+const errors = ErrorSerializer.serialize([error]);
+```
+
+#### Returns
+
+- `errors (Object)`: object containing multiple errors. 
+
+Every error can have these properties:
+
+
+| key  |  |
+|---|--- |---|
+| status | required |
+| title | required |
+| id  | optional |
+| code | optional, application specific |
+| detail | optional |
+| meta | optional |
+
+
+##### Example
+
+```json
+{
+	errors: [
+		{
+			"id": "ba4b9f14-5b83-4dfd-ac46-1c3868e1b3ec",
+			"status": 400, // same as http status code
+			"code": "2006", // application specific
+			"title": "Article not found",
+			"detail": "Article with id 892bb574-090d-4d63-a5b5-cb928d5f5c5f not found",
+			"meta": {
+				"stack": "NotFoundError: ..."
+			}
+		}
+	]
+}
+```
