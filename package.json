@@ -13,7 +13,6 @@
   "author": "hoetmaaiers <robin.houdmeyers@icapps.com>",
   "license": "MIT",
   "dependencies": {
-    "jest": "^21.2.1",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
