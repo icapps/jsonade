@@ -95,4 +95,50 @@ describe('Serializer single resource', () => {
       ],
     });
   });
+
+  test('should serialze a property with a custom function', () => {
+    // raw data
+    const rawData = {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 27,
+      address: {
+        street: 'Markt',
+        number: '100',
+        city: 'Zonnedorp',
+        country: 'Belgium',
+      },
+      hobbies: [
+        { id: 1, name: 'Bowling', description: 'sport & stuff' },
+        { id: 2, name: 'Reading', type: 'read & stuff' },
+        { id: 3, name: 'Gardening', type: 'plants & stuff' },
+      ],
+    };
+
+    // serializer definition
+    const userSerializer = new Serializer('user', {
+      attributes: ['firstName', 'lastName', 'age', 'hobbies', 'address'],
+      address: (v) => {
+        return `${v.street} ${v.number}, ${v.city}, ${v.country}`;
+      },
+      age: val => `${ val } years old`,
+      hobbies: (values) => {
+        return values.map((v) => {
+          return v.name;
+        });
+      },
+    });
+
+    const result = userSerializer.serialize(rawData);
+    const { meta, data } = result;
+
+    expect(meta.type).toEqual('user');
+    expect(data).toEqual({
+      firstName: 'John',
+      lastName: 'Doe',
+      age: '27 years old',
+      address: 'Markt 100, Zonnedorp, Belgium',
+      hobbies: ['Bowling', 'Reading', 'Gardening'],
+    });
+  });
 });

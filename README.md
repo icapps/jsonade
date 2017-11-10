@@ -44,6 +44,16 @@ const data = {
 };
 
 const result = userSerializer.serialize(data);
+
+// 
+// {
+//   firstName: 'John',
+//   lastName: 'Doe',
+//   address: {
+//     street: 'Markt',
+//     number: '100',
+//   },
+// }
 ```
 
 #### Serialize a list of resources
@@ -74,6 +84,19 @@ const data = [
 ];
 
 const result = userSerializer.serialize(data);
+
+// result:
+// [
+//   {
+//     firstName: 'John',
+//     lastName: 'Doe',
+//     address: {
+//       street: 'Markt',
+//       number: '100',
+//     },
+//   },
+//   { ... },
+// ]
 ```
 
 
@@ -105,6 +128,42 @@ const data = {
 };
 
 const result = userSerializer.serialize(data);
+
+// result:
+// {
+//   firstName: 'John',
+//   lastName: 'Doe',
+//   address: {
+//     street: 'Markt',
+//     number: '100',
+//   },
+// }
+```
+
+### Example using a function to transform one property
+
+```javascript
+const { Serializer } = require('jasonalize');
+
+const userSerializer = new Serializer('user', {
+  attributes: ['firstName', 'lastName', 'age'],
+  age: val => `${val} years old`,
+});
+
+const data = {
+  firstName: 'John',
+  lastName: 'Doe',
+  age: '27',
+};
+
+const result = userSerializer.serialize(data);
+
+// result:
+// {
+//   firstName: 'John',
+//   lastName: 'Doe',
+//   age: '27 years old',
+// }
 ```
 
 ### Example serializing an error
