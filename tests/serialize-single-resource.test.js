@@ -11,7 +11,7 @@ describe('Serializer single resource', () => {
 
     // serializer definition
     const userSerializer = new Serializer('user', {
-      attributes: ['firstName', 'lastName'],
+      attributes: ['firstName', 'lastName', 'gender'],
     });
 
     const result = userSerializer.serialize(rawData);
@@ -21,6 +21,7 @@ describe('Serializer single resource', () => {
     expect(data).toEqual({
       firstName: 'John',
       lastName: 'Doe',
+      gender: null,
     });
   });
 
