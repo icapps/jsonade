@@ -8,6 +8,7 @@ describe('ErrorSerializer', () => {
       code: "2006",
       title: "Article not found",
       detail: "Article with id 892bb574-090d-4d63-a5b5-cb928d5f5c5f not found",
+      url: "https://link-to-my-customer.error",
         randomKey: 'random',
       meta: {
         stack: "NotFoundError: ..."
@@ -23,6 +24,7 @@ describe('ErrorSerializer', () => {
           code: "2006",
           title: "Article not found",
           detail: "Article with id 892bb574-090d-4d63-a5b5-cb928d5f5c5f not found",
+      url: "https://link-to-my-customer.error",
           meta: {
             stack: "NotFoundError: ..."
           }
