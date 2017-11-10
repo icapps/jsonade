@@ -1,5 +1,5 @@
 {
-  "name": "jasonalize",
+  "name": "jsonade",
   "version": "1.0.0",
   "description": "Json de/serialization made for consistency",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "node" : ">=6"
   },
   "repository": {
-    "url": "https://github.com/icapps/jasonalize",
+    "url": "https://github.com/icapps/jsonade",
     "type": "git"
   },
   "author": "hoetmaaiers <robin.houdmeyers@icapps.com>",

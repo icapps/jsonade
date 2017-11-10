@@ -1,8 +1,8 @@
-# Jasonalize
+# Jsonade
 
 De/serialize json for consistency!
 
-[![Build Status](https://travis-ci.org/icapps/jasonalize.svg?branch=master)](https://travis-ci.org/icapps/jasonalize)
+[![Build Status](https://travis-ci.org/icapps/jsonade.svg?branch=master)](https://travis-ci.org/icapps/jsonade)
 
 ## Installation
 
@@ -18,7 +18,7 @@ $ npm install ...
 #### Create a serializer
 
 ```javascript
-const { Serializer } = require('jasonalize');
+const { Serializer } = require('jsonade');
 
 const userSerializer = new Serializer('user', {
   attributes: ['firstName', 'lastName', 'address'],
@@ -45,7 +45,7 @@ const data = {
 
 const result = userSerializer.serialize(data);
 
-// 
+//
 // {
 //   firstName: 'John',
 //   lastName: 'Doe',
@@ -104,7 +104,7 @@ const result = userSerializer.serialize(data);
 ### Example using a nested serializer
 
 ```javascript
-const { Serializer } = require('jasonalize');
+const { Serializer } = require('jsonade');
 
 const addressSerializer = new Serializer('address', {
   attributes: ['street', 'number'],
@@ -143,7 +143,7 @@ const result = userSerializer.serialize(data);
 ### Example using a function to transform one property
 
 ```javascript
-const { Serializer } = require('jasonalize');
+const { Serializer } = require('jsonade');
 
 const userSerializer = new Serializer('user', {
   attributes: ['firstName', 'lastName', 'age'],
@@ -169,7 +169,7 @@ const result = userSerializer.serialize(data);
 ### Example serializing an error
 
 ```javascript
-const { ErrorSerializer } = require('jasonalize');
+const { ErrorSerializer } = require('jsonade');
 const errorResponse = ErrorSerializer.serialize(ex);
 ```
 
