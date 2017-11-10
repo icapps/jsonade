@@ -118,15 +118,11 @@ describe('Serializer single resource', () => {
     // serializer definition
     const userSerializer = new Serializer('user', {
       attributes: ['firstName', 'lastName', 'age', 'hobbies', 'address'],
-      address: (v) => {
-        return `${v.street} ${v.number}, ${v.city}, ${v.country}`;
-      },
-      age: val => `${ val } years old`,
-      hobbies: (values) => {
-        return values.map((v) => {
-          return v.name;
-        });
-      },
+      address: v => `${v.street} ${v.number}, ${v.city}, ${v.country}`,
+      age: val => `${val} years old`,
+      hobbies: values => (
+        values.map(v => v.name)
+      ),
     });
 
     const result = userSerializer.serialize(rawData);

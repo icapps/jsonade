@@ -7,7 +7,7 @@ De/serialize json for consistency!
 ## Installation
 
 ```bash
-$ npm install ...
+$ npm install jsonade
 ```
 
 
