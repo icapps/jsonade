@@ -1,6 +1,6 @@
 {
   "name": "jsonade",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Json de/serialization made for consistency",
   "main": "index.js",
   "engines" : {

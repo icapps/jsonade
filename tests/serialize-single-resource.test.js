@@ -138,4 +138,29 @@ describe('Serializer single resource', () => {
       hobbies: ['Bowling', 'Reading', 'Gardening'],
     });
   });
+
+  test('should serialze an atomic array', () => {
+    // raw data
+    const rawData = {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 27,
+      hobbies: ['Bowling', 'Reading', 'Gardening'],
+    };
+
+    // serializer definition
+    const userSerializer = new Serializer('user', {
+      attributes: ['firstName', 'lastName', 'hobbies'],
+    });
+
+    const result = userSerializer.serialize(rawData);
+    const { meta, data } = result;
+
+    expect(meta.type).toEqual('user');
+    expect(data).toEqual({
+      firstName: 'John',
+      lastName: 'Doe',
+      hobbies: ['Bowling', 'Reading', 'Gardening'],
+    });
+  });
 });
