@@ -4,173 +4,17 @@ De/serialize json for consistency!
 
 [![Build Status](https://travis-ci.org/icapps/jsonade.svg?branch=master)](https://travis-ci.org/icapps/jsonade)
 
+- [Installation](#installation)
+- [Serializer](#serializer)
+- [Serializer instance](#serializer-instance)
+- [ErrorSerializer](#errorserializer)
+- [Examples](#examples)
+
+
 ## Installation
 
 ```bash
 $ npm install jsonade
-```
-
-
-## Examples
-
-### Basic example
-
-#### Create a serializer
-
-```javascript
-const { Serializer } = require('jsonade');
-
-const userSerializer = new Serializer('user', {
-  attributes: ['firstName', 'lastName', 'address'],
-  address: {
-    attributes: ['street', 'number'],
-  },
-});
-```
-
-#### Serialize a single resource
-
-```javascript
-const data = {
-  firstName: 'John',
-  lastName: 'Doe',
-  age: 27,
-  address: {
-    street: 'Markt',
-    number: '100',
-    city: 'Zonnedorp',
-    country: 'Belgium',
-  },
-};
-
-const result = userSerializer.serialize(data);
-
-//
-// {
-//   firstName: 'John',
-//   lastName: 'Doe',
-//   address: {
-//     street: 'Markt',
-//     number: '100',
-//   },
-// }
-```
-
-#### Serialize a list of resources
-
-```javascript
-const data = [
-	{
-	  firstName: 'John',
-	  lastName: 'Doe',
-	  age: 27,
-	  address: {
-	    street: 'Markt',
-	    number: '100',
-	    city: 'Zonnedorp',
-	    country: 'Belgium',
-	  },
-	}, {
-	  firstName: 'Jessie',
-	  lastName: 'Doe',
-	  age: 26,
-	  address: {
-	    street: 'Marketstreet',
-	    number: '101',
-	    city: 'Sunvillage',
-	    country: 'United Kingdom',
-	  },
-	}
-];
-
-const result = userSerializer.serialize(data);
-
-// result:
-// [
-//   {
-//     firstName: 'John',
-//     lastName: 'Doe',
-//     address: {
-//       street: 'Markt',
-//       number: '100',
-//     },
-//   },
-//   { ... },
-// ]
-```
-
-
-
-### Example using a nested serializer
-
-```javascript
-const { Serializer } = require('jsonade');
-
-const addressSerializer = new Serializer('address', {
-  attributes: ['street', 'number'],
-});
-
-const userSerializer = new Serializer('user', {
-  attributes: ['firstName', 'lastName', 'address'],
-  address: addresssSerializer,
-});
-
-const data = {
-  firstName: 'John',
-  lastName: 'Doe',
-  age: 27,
-  address: {
-    street: 'Markt',
-    number: '100',
-    city: 'Zonnedorp',
-    country: 'Belgium',
-  },
-};
-
-const result = userSerializer.serialize(data);
-
-// result:
-// {
-//   firstName: 'John',
-//   lastName: 'Doe',
-//   address: {
-//     street: 'Markt',
-//     number: '100',
-//   },
-// }
-```
-
-### Example using a function to transform one property
-
-```javascript
-const { Serializer } = require('jsonade');
-
-const userSerializer = new Serializer('user', {
-  attributes: ['firstName', 'lastName', 'age'],
-  age: val => `${val} years old`,
-});
-
-const data = {
-  firstName: 'John',
-  lastName: 'Doe',
-  age: '27',
-};
-
-const result = userSerializer.serialize(data);
-
-// result:
-// {
-//   firstName: 'John',
-//   lastName: 'Doe',
-//   age: '27 years old',
-// }
-```
-
-### Example serializing an error
-
-```javascript
-const { ErrorSerializer } = require('jsonade');
-const errorResponse = ErrorSerializer.serialize(ex);
 ```
 
 
@@ -202,12 +46,16 @@ Returns an instance of a custom serializer, ready to use for serializing data.
 ### `serialize`
 
 ```javascript
-mySerializer.serialize(data);
+mySerializer.serialize(data, options);
 ```
 
 #### Arguments
 
 `data (Object|Array)`: Dataset to serialize.
+
+`options (Object)`: Options for serialisation
+
+- `totalCount (Number) *required`: When serializing an array, the totalCount is part of the meta object.
 
 #### Returns
 
@@ -260,4 +108,190 @@ Every error can have these properties:
     }
   ]
 }
+```
+
+
+
+## Examples
+
+### Basic example
+
+#### Create a serializer
+
+```javascript
+const { Serializer } = require('jsonade');
+
+const userSerializer = new Serializer('user', {
+  attributes: ['firstName', 'lastName', 'address'],
+  address: {
+    attributes: ['street', 'number'],
+  },
+});
+```
+
+#### Serialize a single resource
+
+```javascript
+const data = {
+  firstName: 'John',
+  lastName: 'Doe',
+  age: 27,
+  address: {
+    street: 'Markt',
+    number: '100',
+    city: 'Zonnedorp',
+    country: 'Belgium',
+  },
+};
+
+const result = userSerializer.serialize(data);
+
+// result:
+// {
+//   meta: {
+//     type: 'user'
+//   },
+//   data: {
+//     firstName: 'John',
+//     lastName: 'Doe',
+//     address: {
+//       street: 'Markt',
+//       number: '100',
+//     }
+//   }
+// }
+```
+
+#### Serialize a list of resources
+
+```javascript
+const data = [
+	{
+	  firstName: 'John',
+	  lastName: 'Doe',
+	  age: 27,
+	  address: {
+	    street: 'Markt',
+	    number: '100',
+	    city: 'Zonnedorp',
+	    country: 'Belgium',
+	  },
+	}, {
+	  firstName: 'Jessie',
+	  lastName: 'Doe',
+	  age: 26,
+	  address: {
+	    street: 'Marketstreet',
+	    number: '101',
+	    city: 'Sunvillage',
+	    country: 'United Kingdom',
+	  },
+	}
+];
+
+const result = userSerializer.serialize(data, { totalCount: 91 });
+
+// result:
+// {
+//   meta: {
+//     type: 'user',
+//     count: 2,
+//     totalCount: 91
+//   },
+//   data: [
+//     {
+//       firstName: 'John',
+//       lastName: 'Doe',
+//       address: {
+//         street: 'Markt',
+//         number: '100'
+//       }
+//     },
+//     { ... },
+//   ]
+// }
+```
+
+
+
+### Example using a nested serializer
+
+```javascript
+const { Serializer } = require('jsonade');
+
+const addressSerializer = new Serializer('address', {
+  attributes: ['street', 'number'],
+});
+
+const userSerializer = new Serializer('user', {
+  attributes: ['firstName', 'lastName', 'address'],
+  address: addresssSerializer,
+});
+
+const data = {
+  firstName: 'John',
+  lastName: 'Doe',
+  age: 27,
+  address: {
+    street: 'Markt',
+    number: '100',
+    city: 'Zonnedorp',
+    country: 'Belgium',
+  },
+};
+
+const result = userSerializer.serialize(data);
+
+// result:
+// {
+//   meta: {
+//     type: 'user'
+//   },
+//   data: {
+//     firstName: 'John',
+//     lastName: 'Doe',
+//     address: {
+//       street: 'Markt',
+//       number: '100'
+//     }
+//   }
+// }
+```
+
+### Example using a function to transform one property
+
+```javascript
+const { Serializer } = require('jsonade');
+
+const userSerializer = new Serializer('user', {
+  attributes: ['firstName', 'lastName', 'age'],
+  age: val => `${val} years old`,
+});
+
+const data = {
+  firstName: 'John',
+  lastName: 'Doe',
+  age: '27',
+};
+
+const result = userSerializer.serialize(data);
+
+// result:
+// {
+//   meta: {
+//     type: 'user'
+//   },
+//   data: {
+//     firstName: 'John',
+//     lastName: 'Doe',
+//     age: '27 years old'
+//   }
+// }
+```
+
+### Example serializing an error
+
+```javascript
+const { ErrorSerializer } = require('jsonade');
+const errorResponse = ErrorSerializer.serialize(ex);
 ```
