@@ -9,13 +9,35 @@ describe('Serializer multiple resource', () => {
     }).toThrow('Resource must be defined');
   });
 
-  test('should throw an exception when no totalCount is given for an array', () => {
-    expect(() => {
-      const userSerializer = new Serializer('user', {
-        attributes: ['firstName', 'lastName'],
-      });
+  test('should use the configured totalCount if provided', () => {
+    const rawData = [
+      { firstName: 'John', lastName: 'Doe' },
+      { firstName: 'Jane', lastName: 'Doe' },
+    ];
 
-      return userSerializer.serialize([]);
-    }).toThrow('Option totalCount must be defined when serializing an array');
+    const userSerializer = new Serializer('user', {
+      attributes: ['firstName', 'lastName'],
+    });
+
+    const result = userSerializer.serialize(rawData, { totalCount: 99 });
+    const { meta } = result;
+    expect(meta.count).toEqual(2);
+    expect(meta.totalCount).toEqual(99);
+  });
+
+  test('should use the list count if no totalCount is provided', () => {
+    const rawData = [
+      { firstName: 'John', lastName: 'Doe' },
+      { firstName: 'Jane', lastName: 'Doe' },
+    ];
+
+    const userSerializer = new Serializer('user', {
+      attributes: ['firstName', 'lastName'],
+    });
+
+    const result = userSerializer.serialize(rawData);
+    const { meta } = result;
+    expect(meta.count).toEqual(2);
+    expect(meta.totalCount).toEqual(2);
   });
 });

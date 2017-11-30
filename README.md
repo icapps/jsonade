@@ -55,7 +55,7 @@ mySerializer.serialize(data, options);
 
 `options (Object)`: Options for serialisation
 
-- `totalCount (Number) *required`: When serializing an array, the totalCount is part of the meta object.
+- `totalCount (Number) *optional`: When serializing an array, the totalCount is part of the meta object. If no totalCount is configured, the length of the provided dataset is used.
 
 #### Returns
 
