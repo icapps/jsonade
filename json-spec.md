@@ -132,6 +132,134 @@ Response:
 - HTTP status code: 204
 - Body: empty
 
+### Get version
+
+Return a successfull response with root properties:
+
+- meta: `Object`
+- data: `Object`
+
+#### Example
+
+```json
+# GET /version/ios
+
+{
+  "meta": {},
+  "data": {
+    "minVersion": "1.4.0",
+    "currentVersion": "1.8.0"
+  }
+}
+```
+
+## Login responses
+
+### Login a user
+
+Return a succesfull response for a single resource with root properties:
+
+- meta: `Object`
+- data: `Object`
+
+#### Request
+
+```json
+# POST /login
+
+{
+    "username": "test",
+    "password": "test",
+    "deviceId": "1234"
+}
+```
+
+#### Response
+
+```json
+# POST /login
+
+{
+    "meta": {},
+    "data": {
+        "accessToken": "123456",
+        "refreshToken": "123456"
+  }
+}
+```
+
+### Get a new access token
+
+Return a succesfull response for a single resource with root properties:
+
+- meta: `Object`
+- data: `Object`
+
+
+#### Request
+
+```json
+# POST /refresh
+# HEADERS accessToken (Bearer JWT)
+
+{
+    "username": "test",
+    "password": "test",
+    "deviceId": "1234"
+}
+```
+
+#### Response
+
+```json
+# POST /login
+
+{
+  "meta": {},
+  "data": {
+    "accessToken": "123456",
+    "refreshToken": "123456"
+  }
+}
+```
+
+### Retrieve current user
+
+Return a succesfull response for a single user with root properties:
+
+- meta: `Object`
+- data: `Object`
+
+#### Response
+
+```json
+# POST /me
+# HEADERS accessToken (Bearer JWT)
+
+{
+  "meta": {},
+  "data": {
+    "id": 1,
+    "email": "info@icapps.com"
+  }
+}
+```
+
+### Logout a user
+
+Successfull logout a user:
+
+Request:
+
+- HTTP method: POST
+- Content-Type: application/json
+- Headers: accessToken (Bearer JWT)
+
+Response:
+
+- HTTP status code: 204
+- Body: empty
+
 
 ## Error responses
 
