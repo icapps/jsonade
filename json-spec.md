@@ -245,7 +245,7 @@ Return a succesfull response for a single user with root properties:
 }
 ```
 
-### Logout a user
+### Logout a user <Optional>
 
 Successfull logout a user:
 
