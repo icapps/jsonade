@@ -92,14 +92,15 @@ Return a succesfull response for a single resource with root properties:
 ### Create single resource
 
 Successfull creation of a resource:
-Request:
 
-- HTTP method: POST
-- Content-Type: application/json
+##### Request:
+- HTTP method: `POST`
+- Headers:
+	- Content-Type: `application/json`
 
-Response:
+##### Response:
 
-- HTTP status code: 201
+- HTTP status code: `201`
 - Body: created single resource
 
 
@@ -107,14 +108,14 @@ Response:
 
 Successfull update of a resource:
 
-Request:
+##### Request:
 
-- HTTP method: PUT
-- Content-Type: application/json
+- HTTP method: `PUT`
+- Headers:
+	- Content-Type: `application/json`
+##### Response:
 
-Response:
-
-- HTTP status code: 201
+- HTTP status code: `201`
 - Body: updated single resource
 
 
@@ -122,28 +123,32 @@ Response:
 
 Successfull deleted of a resource:
 
-Request:
+##### Request:
 
-- HTTP method: DELETE
-- Content-Type: application/json
+- HTTP method: `DELETE`
+- Headers:
+	- Content-Type: `application/json`
 
-Response:
+#### Response:
 
-- HTTP status code: 204
+- HTTP status code: `204`
 - Body: empty
 
-### Get version
 
-Return a successfull response with root properties:
+## Specific specifications
 
-- meta: `Object`
-- data: `Object`
+### Version check
 
-#### Example
+##### Request:
+
+- HTTP method: `GET`
+- Path: `/version/ios`
+- Headers:
+	- Content-Type: `application/json`
+
+##### Response example
 
 ```json
-# GET /version/ios
-
 {
   "meta": {},
   "data": {
@@ -153,20 +158,18 @@ Return a successfull response with root properties:
 }
 ```
 
-## Login responses
+### Login
 
-### Login a user
+##### Request:
 
-Return a succesfull response for a single resource with root properties:
+- HTTP method: `POST`
+- Path: `/login`
+- Headers:
+	- Content-Type: `application/json`
 
-- meta: `Object`
-- data: `Object`
-
-#### Request
+##### Body example
 
 ```json
-# POST /login
-
 {
     "username": "test",
     "password": "test",
@@ -174,7 +177,7 @@ Return a succesfull response for a single resource with root properties:
 }
 ```
 
-#### Response
+##### Response example
 
 ```json
 # POST /login
@@ -188,20 +191,21 @@ Return a succesfull response for a single resource with root properties:
 }
 ```
 
-### Get a new access token
+### Refresh access token
 
-Return a succesfull response for a single resource with root properties:
+Get new `accessToken` based on a valid `refreshToken`.
 
-- meta: `Object`
-- data: `Object`
+##### Request:
 
+- HTTP method: `POST`
+- Path: `/refresh`
+- Headers:
+	- Content-Type: `application/json`
+	- Authorization: `Bearer accessToken`
 
-#### Request
+##### Body example
 
 ```json
-# POST /refresh
-# HEADERS accessToken (Bearer JWT)
-
 {
     "username": "test",
     "password": "test",
@@ -209,11 +213,9 @@ Return a succesfull response for a single resource with root properties:
 }
 ```
 
-#### Response
+##### Response example
 
 ```json
-# POST /login
-
 {
   "meta": {},
   "data": {
@@ -225,17 +227,17 @@ Return a succesfull response for a single resource with root properties:
 
 ### Retrieve current user
 
-Return a succesfull response for a single user with root properties:
+##### Request
 
-- meta: `Object`
-- data: `Object`
+- HTTP method: `GET`
+- Path: `/me`
+- Headers:
+	- Content-Type: `application/json`
+	- Authorization: `Bearer accessToken`
 
-#### Response
+##### Response example
 
 ```json
-# POST /me
-# HEADERS accessToken (Bearer JWT)
-
 {
   "meta": {},
   "data": {
@@ -247,17 +249,18 @@ Return a succesfull response for a single user with root properties:
 
 ### Logout a user <Optional>
 
-Successfull logout a user:
+Successfull logout a user
 
-Request:
+- HTTP method: `POST`
+- Path: `/logout`
+- Headers:
+	- Content-Type: `application/json`
+	- Authorization: `Bearer accessToken`
 
-- HTTP method: POST
-- Content-Type: application/json
-- Headers: accessToken (Bearer JWT)
 
-Response:
+##### Response example:
 
-- HTTP status code: 204
+- HTTP status code: `204`
 - Body: empty
 
 
