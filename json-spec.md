@@ -92,14 +92,15 @@ Return a succesfull response for a single resource with root properties:
 ### Create single resource
 
 Successfull creation of a resource:
-Request:
 
-- HTTP method: POST
-- Content-Type: application/json
+##### Request:
+- HTTP method: `POST`
+- Headers:
+	- Content-Type: `application/json`
 
-Response:
+##### Response:
 
-- HTTP status code: 201
+- HTTP status code: `201`
 - Body: created single resource
 
 
@@ -107,14 +108,14 @@ Response:
 
 Successfull update of a resource:
 
-Request:
+##### Request:
 
-- HTTP method: PUT
-- Content-Type: application/json
+- HTTP method: `PUT`
+- Headers:
+	- Content-Type: `application/json`
+##### Response:
 
-Response:
-
-- HTTP status code: 201
+- HTTP status code: `201`
 - Body: updated single resource
 
 
@@ -122,14 +123,144 @@ Response:
 
 Successfull deleted of a resource:
 
-Request:
+##### Request:
 
-- HTTP method: DELETE
-- Content-Type: application/json
+- HTTP method: `DELETE`
+- Headers:
+	- Content-Type: `application/json`
 
-Response:
+#### Response:
 
-- HTTP status code: 204
+- HTTP status code: `204`
+- Body: empty
+
+
+## Specific specifications
+
+### Version check
+
+##### Request:
+
+- HTTP method: `GET`
+- Path: `/version/ios`
+- Headers:
+	- Content-Type: `application/json`
+
+##### Response example
+
+```json
+{
+  "meta": {},
+  "data": {
+    "minVersion": "1.4.0",
+    "currentVersion": "1.8.0"
+  }
+}
+```
+
+### Login
+
+##### Request:
+
+- HTTP method: `POST`
+- Path: `/login`
+- Headers:
+	- Content-Type: `application/json`
+
+##### Body example
+
+```json
+{
+    "username": "test",
+    "password": "test",
+    "deviceId": "1234"
+}
+```
+
+##### Response example
+
+```json
+# POST /login
+
+{
+    "meta": {},
+    "data": {
+        "accessToken": "123456",
+        "refreshToken": "123456"
+  }
+}
+```
+
+### Refresh access token
+
+Get new `accessToken` based on a valid `refreshToken`.
+
+##### Request:
+
+- HTTP method: `POST`
+- Path: `/refresh`
+- Headers:
+	- Content-Type: `application/json`
+	- Authorization: `Bearer accessToken`
+
+##### Body example
+
+```json
+{
+    "username": "test",
+    "password": "test",
+    "deviceId": "1234"
+}
+```
+
+##### Response example
+
+```json
+{
+  "meta": {},
+  "data": {
+    "accessToken": "123456",
+    "refreshToken": "123456"
+  }
+}
+```
+
+### Retrieve current user
+
+##### Request
+
+- HTTP method: `GET`
+- Path: `/me`
+- Headers:
+	- Content-Type: `application/json`
+	- Authorization: `Bearer accessToken`
+
+##### Response example
+
+```json
+{
+  "meta": {},
+  "data": {
+    "id": 1,
+    "email": "info@icapps.com"
+  }
+}
+```
+
+### Logout a user <Optional>
+
+Successfull logout a user
+
+- HTTP method: `POST`
+- Path: `/logout`
+- Headers:
+	- Content-Type: `application/json`
+	- Authorization: `Bearer accessToken`
+
+
+##### Response example:
+
+- HTTP status code: `204`
 - Body: empty
 
 
