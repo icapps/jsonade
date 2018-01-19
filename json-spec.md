@@ -207,9 +207,7 @@ Get new `accessToken` based on a valid `refreshToken`.
 
 ```json
 {
-    "username": "test",
-    "password": "test",
-    "deviceId": "1234"
+    "refreshToken": "123456"
 }
 ```
 
