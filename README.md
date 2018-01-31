@@ -57,6 +57,8 @@ mySerializer.serialize(data, options);
 
 - `totalCount (Number) *optional`: When serializing an array, the totalCount is part of the meta object. If no totalCount is configured, the length of the provided dataset is used.
 
+Besides `totalCount`, `options` may be used to extend the `meta` response object with arbitrary keys. The `type` key however, cannot be overwritten.
+
 #### Returns
 
 Returns a serialized data respresentation of the given data.
@@ -212,6 +214,56 @@ const result = userSerializer.serialize(data, { totalCount: 91 });
 // }
 ```
 
+#### Extend the meta object
+
+```javascript
+const data = [
+	{
+	  firstName: 'John',
+	  lastName: 'Doe',
+	  age: 25,
+	  address: {
+	    street: 'Markt',
+	    number: '100',
+	    city: 'Zonnedorp',
+	    country: 'Belgium',
+	  },
+	}, {
+	  firstName: 'Jessie',
+	  lastName: 'Doe',
+	  age: 27,
+	  address: {
+	    street: 'Marketstreet',
+	    number: '101',
+	    city: 'Sunvillage',
+	    country: 'United Kingdom',
+	  },
+	}
+];
+
+const result = userSerializer.serialize(data, { totalCount: 91, averageAge: 26 });
+
+// result:
+// {
+//   meta: {
+//     type: 'user',
+//     count: 2,
+//     totalCount: 91
+//     averageAge: 26
+//   },
+//   data: [
+//     {
+//       firstName: 'John',
+//       lastName: 'Doe',
+//       address: {
+//         street: 'Markt',
+//         number: '100'
+//       }
+//     },
+//     { ... },
+//   ]
+// }
+```
 
 
 ### Example using a nested serializer
