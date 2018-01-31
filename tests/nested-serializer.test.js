@@ -57,7 +57,7 @@ describe('Nested serializer', () => {
           city: 'Zonnedorp',
           country: 'Belgium',
         },
-      ]
+      ],
     };
 
     // serializer definition
