@@ -153,7 +153,7 @@ Successfull deleted of a resource:
   "meta": {},
   "data": {
     "minVersion": "1.4.0",
-    "currentVersion": "1.8.0"
+    "latestVersion": "1.8.0"
   }
 }
 ```
