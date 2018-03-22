@@ -347,3 +347,7 @@ const result = userSerializer.serialize(data);
 const { ErrorSerializer } = require('jsonade');
 const errorResponse = ErrorSerializer.serialize(ex);
 ```
+
+## License
+
+This project is licensed under the ISC License - see the [LICENSE.md](LICENSE.md) file for details
