@@ -1,0 +1,28 @@
+# Build folder output
+build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+node_modules
+
+# Editor
+.idea
+.vscode
+
+# NPM
+.npm
+package-lock.json
+
+# Yarn
+.yarnclean
+yarn-error.log

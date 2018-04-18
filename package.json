@@ -13,17 +13,27 @@
   "author": "hoetmaaiers <robin.houdmeyers@icapps.com>",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "~4.17.5"
   },
   "devDependencies": {
-    "eslint": "^4.10.0",
+    "coveralls": "^3.0.0",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jest": "^21.2.0",
-    "jest": "^21.2.1"
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jest": "^21.15.0",
+    "jest": "^22.4.3",
+    "np": "^2.20.1"
   },
   "scripts": {
     "test": "jest",
-    "lint": "eslint ."
+    "test:coverage": "jest --coverage",
+    "lint": "eslint ./lib ./tests",
+    "release": "node_modules/np/cli.js --no-cleanup"
+  },
+  "precommit": [
+    "lint"
+  ],
+  "directories": {
+    "tests": "tests"
   }
 }
