@@ -2,14 +2,16 @@
 
 De/serialize json for consistency!
 
+[![npm version](https://badge.fury.io/js/jsonade.svg)](https://badge.fury.io/js/jsonade)
+[![Dependencies](https://david-dm.org/icapps/jsonade.svg)](https://david-dm.org/icapps/jsonade.svg)
 [![Build Status](https://travis-ci.org/icapps/jsonade.svg?branch=master)](https://travis-ci.org/icapps/jsonade)
+[![Coverage Status](https://coveralls.io/repos/github/icapps/jsonade/badge.svg)](https://coveralls.io/github/icapps/jsonade)
 
 - [Installation](#installation)
 - [Serializer](#serializer)
 - [Serializer instance](#serializer-instance)
 - [ErrorSerializer](#errorserializer)
 - [Examples](#examples)
-
 
 ## Installation
 
@@ -39,7 +41,6 @@ Options:
 #### Returns
 
 Returns an instance of a custom serializer, ready to use for serializing data.
-
 
 ## Serializer instance
 
@@ -111,8 +112,6 @@ Every error can have these properties:
   ]
 }
 ```
-
-
 
 ## Examples
 
@@ -264,7 +263,6 @@ const result = userSerializer.serialize(data, { totalCount: 91, averageAge: 26 }
 //   ]
 // }
 ```
-
 
 ### Example using a nested serializer
 

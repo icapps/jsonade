@@ -1,0 +1,43 @@
+# Source code and examples
+src/
+examples
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Editor
+.editorconfig
+.vscode
+
+# Linter
+.eslintrc
+
+# Testing and coverage
+test
+tests
+jest.config.js
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# NPM
+.npm
+.npmignore
+package-lock.json
+.nvmrc
+
+# Yarn
+.yarnclean
+.yarnrc
+yarn.lock
+yarn-error.log
+
+# Travis
+.travis.yml
+
+# Licenses
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+HISTORY.md
