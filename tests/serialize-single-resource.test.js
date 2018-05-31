@@ -1,7 +1,7 @@
 const { Serializer } = require('./../lib');
 
 describe('Serializer single resource', () => {
-  test('should serialze a flat dataset', () => {
+  test('should serialize a flat dataset', () => {
     // raw data
     const rawData = {
       firstName: 'John',
@@ -25,7 +25,7 @@ describe('Serializer single resource', () => {
     });
   });
 
-  test('should serialze a nested object', () => {
+  test('should serialize a nested object', () => {
     // raw data
     const rawData = {
       firstName: 'John',
@@ -61,7 +61,7 @@ describe('Serializer single resource', () => {
     });
   });
 
-  test('should serialze a nested array', () => {
+  test('should serialize a nested array', () => {
     // raw data
     const rawData = {
       firstName: 'John',
@@ -97,7 +97,7 @@ describe('Serializer single resource', () => {
     });
   });
 
-  test('should serialze a property with a custom function', () => {
+  test('should serialize a property with a custom function', () => {
     // raw data
     const rawData = {
       firstName: 'John',
@@ -139,7 +139,7 @@ describe('Serializer single resource', () => {
     });
   });
 
-  test('should serialze an atomic array', () => {
+  test('should serialize an atomic array', () => {
     // raw data
     const rawData = {
       firstName: 'John',
@@ -164,7 +164,7 @@ describe('Serializer single resource', () => {
     });
   });
 
-  test('should serialze a plain object', () => {
+  test('should serialize a plain object', () => {
     // raw data
     const rawData = {
       firstName: 'John',
