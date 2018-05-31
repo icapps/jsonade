@@ -163,4 +163,32 @@ describe('Serializer single resource', () => {
       hobbies: ['Bowling', 'Reading', 'Gardening'],
     });
   });
+
+  test('should serialze a plain object', () => {
+    // raw data
+    const rawData = {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 27,
+      children: {
+        oldest: 'Brent',
+      },
+    };
+
+    // serializer definition
+    const userSerializer = new Serializer('user', {
+      attributes: ['firstName', 'lastName', 'children'],
+    });
+
+    const result = userSerializer.serialize(rawData);
+    const { meta, data } = result;
+    expect(meta.type).toEqual('user');
+    expect(data).toEqual({
+      firstName: 'John',
+      lastName: 'Doe',
+      children: {
+        oldest: 'Brent',
+      },
+    });
+  });
 });
