@@ -1,7 +1,7 @@
 const { Serializer } = require('./../lib');
 
 describe('Serializer single resource', () => {
-  test('should serialze a flat dataset', () => {
+  test('should serialize a flat dataset', () => {
     // raw data
     const rawData = {
       firstName: 'John',
@@ -25,7 +25,7 @@ describe('Serializer single resource', () => {
     });
   });
 
-  test('should serialze a nested object', () => {
+  test('should serialize a nested object', () => {
     // raw data
     const rawData = {
       firstName: 'John',
@@ -61,7 +61,7 @@ describe('Serializer single resource', () => {
     });
   });
 
-  test('should serialze a nested array', () => {
+  test('should serialize a nested array', () => {
     // raw data
     const rawData = {
       firstName: 'John',
@@ -97,7 +97,7 @@ describe('Serializer single resource', () => {
     });
   });
 
-  test('should serialze a property with a custom function', () => {
+  test('should serialize a property with a custom function', () => {
     // raw data
     const rawData = {
       firstName: 'John',
@@ -139,7 +139,7 @@ describe('Serializer single resource', () => {
     });
   });
 
-  test('should serialze an atomic array', () => {
+  test('should serialize an atomic array', () => {
     // raw data
     const rawData = {
       firstName: 'John',
@@ -161,6 +161,34 @@ describe('Serializer single resource', () => {
       firstName: 'John',
       lastName: 'Doe',
       hobbies: ['Bowling', 'Reading', 'Gardening'],
+    });
+  });
+
+  test('should serialize a plain object', () => {
+    // raw data
+    const rawData = {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 27,
+      children: {
+        oldest: 'Brent',
+      },
+    };
+
+    // serializer definition
+    const userSerializer = new Serializer('user', {
+      attributes: ['firstName', 'lastName', 'children'],
+    });
+
+    const result = userSerializer.serialize(rawData);
+    const { meta, data } = result;
+    expect(meta.type).toEqual('user');
+    expect(data).toEqual({
+      firstName: 'John',
+      lastName: 'Doe',
+      children: {
+        oldest: 'Brent',
+      },
     });
   });
 });
