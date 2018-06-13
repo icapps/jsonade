@@ -139,6 +139,27 @@ describe('Serializer single resource', () => {
     });
   });
 
+  test('should serialize a property with a custom function using the data parameter', () => {
+    // raw data
+    const rawData = {
+      id: 1234,
+    };
+
+    // serializer definition
+    const idSerializer = new Serializer('user', {
+      attributes: ['userId'],
+      userId: (val, data) => data.id,
+    });
+
+    const result = idSerializer.serialize(rawData);
+    const { meta, data } = result;
+
+    expect(meta.type).toEqual('user');
+    expect(data).toEqual({
+      userId: rawData.id,
+    });
+  });
+
   test('should serialize an atomic array', () => {
     // raw data
     const rawData = {

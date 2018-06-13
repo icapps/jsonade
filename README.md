@@ -314,8 +314,9 @@ const result = userSerializer.serialize(data);
 const { Serializer } = require('jsonade');
 
 const userSerializer = new Serializer('user', {
-  attributes: ['firstName', 'lastName', 'age'],
+  attributes: ['firstName', 'lastName', 'age', 'greeting'],
   age: val => `${val} years old`,
+  greeting: (v, data) => `Hello, I'm ${data.firstName} ${data.lastName}`,
 });
 
 const data = {
@@ -335,6 +336,7 @@ const result = userSerializer.serialize(data);
 //     firstName: 'John',
 //     lastName: 'Doe',
 //     age: '27 years old'
+//     greeting: 'Hello, I\'m John Doe',
 //   }
 // }
 ```
