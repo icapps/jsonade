@@ -25,18 +25,28 @@ $ npm install jsonade
 ### `constructor`
 
 ```javascript
-const mySerializer = new Serializer(resource, options);
+const mySerializer = new Serializer(resource, configuration, options);
 ```
 
 #### Arguments
 
 `resource (string)`: Name of the resource being serialized
 
-`options (Object)`: Options for serialisation
+`configuration (Object)`: Configuration for serialisation
+
+`options (Object)`: Extra options for the serializer (optional)
+
+Configuration:
+
+- `attributes (Array)`: attributes to serialize
 
 Options:
 
-- `attributes (Array)`: attributes to serialize
+ - `case`: Convert the case of the keys of `data` 
+ 	- `Undefined`: Doesn't convert the case
+	- `camelCase`: Converts keys to camelCase
+	- `snake_case`: Converts keys to snake_case
+	- `kebab-case`: Converts keys to kebab-case
 
 #### Returns
 
@@ -47,18 +57,18 @@ Returns an instance of a custom serializer, ready to use for serializing data.
 ### `serialize`
 
 ```javascript
-mySerializer.serialize(data, options);
+mySerializer.serialize(data, configuration);
 ```
 
 #### Arguments
 
 `data (Object|Array)`: Dataset to serialize.
 
-`options (Object)`: Options for serialisation
+`configuration (Object)`: Configuration for serialisation
 
 - `totalCount (Number) *optional`: When serializing an array, the totalCount is part of the meta object. If no totalCount is configured, the length of the provided dataset is used.
 
-Besides `totalCount`, `options` may be used to extend the `meta` response object with arbitrary keys. The `type` key however, cannot be overwritten.
+Besides `totalCount`, `configuration ` may be used to extend the `meta` response object with arbitrary keys. The `type` key however, cannot be overwritten.
 
 #### Returns
 
@@ -304,6 +314,38 @@ const result = userSerializer.serialize(data);
 //       street: 'Markt',
 //       number: '100'
 //     }
+//   }
+// }
+```
+### Example using a case option
+
+```javascript
+const { Serializer } = require('jsonade');
+
+const userSerializer = new Serializer(
+  'user', 
+  { attributes: ['firstName', 'lastName', 'age', 'greeting'] },
+  { case: 'snake_case' },
+);
+
+const data = {
+  firstName: 'John',
+  lastName: 'Doe',
+  age: '27',
+};
+
+const result = userSerializer.serialize(data);
+
+// result:
+// {
+//   meta: {
+//     type: 'user'
+//   },
+//   data: {
+//     first_name: 'John',
+//     last_name: 'Doe',
+//     age: '27 years old'
+//     greeting: 'Hello, I\'m John Doe',
 //   }
 // }
 ```
