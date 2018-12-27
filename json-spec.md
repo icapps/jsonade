@@ -1,4 +1,4 @@
-# iCapps - JSON request/response specification
+# icapps - JSON request/response specification
 
 ## Goals
 

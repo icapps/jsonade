@@ -15,10 +15,9 @@ De/serialize json for consistency!
 
 ## Installation
 
-```bash
-$ npm install jsonade
+``` shell
+npm install jsonade
 ```
-
 
 ## Serializer
 
@@ -42,11 +41,11 @@ Configuration:
 
 Options:
 
- - `case`: Convert the case of the keys of `data` 
- 	- `Undefined`: Doesn't convert the case
-	- `camelCase`: Converts keys to camelCase
-	- `snake_case`: Converts keys to snake_case
-	- `kebab-case`: Converts keys to kebab-case
+- `case`: Convert the case of the keys of `data`
+- `Undefined`: Doesn't convert the case
+- `camelCase`: Converts keys to camelCase
+- `snake_case`: Converts keys to snake_case
+- `kebab-case`: Converts keys to kebab-case
 
 #### Returns
 
@@ -73,7 +72,6 @@ Besides `totalCount`, `configuration ` may be used to extend the `meta` response
 #### Returns
 
 Returns a serialized data respresentation of the given data.
-
 
 ## ErrorSerializer
 
@@ -102,7 +100,6 @@ Every error can have these properties:
 | code | optional, application specific |
 | detail | optional |
 | meta | optional |
-
 
 ##### Example
 
