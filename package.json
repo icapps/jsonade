@@ -7,7 +7,9 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint ./lib ./tests",
-    "release": "node_modules/np/cli.js --no-cleanup"
+    "release": "node_modules/np/source/cli.js --no-cleanup",
+    "git:clean": "git branch --merged | egrep -v \"(^\\*|master|staging|develop)\" | xargs git branch -d",
+    "git:clean-remote": "git remote prune origin"
   },
   "precommit": [
     "lint"
@@ -16,13 +18,13 @@
     "lodash": "~4.17.11"
   },
   "devDependencies": {
-    "coveralls": "^3.0.2",
-    "eslint": "^5.11.1",
+    "coveralls": "^3.0.3",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^22.1.2",
-    "jest": "^23.6.0",
-    "np": "^3.1.0"
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.4.1",
+    "jest": "^24.7.1",
+    "np": "^4.0.2"
   },
   "engines": {
     "node": ">=6"
