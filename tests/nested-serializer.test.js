@@ -58,6 +58,7 @@ describe('Nested serializer', () => {
           country: 'Belgium',
         },
       ],
+      contactInfo: null,
     };
 
     // serializer definition
@@ -65,9 +66,14 @@ describe('Nested serializer', () => {
       attributes: ['street', 'number'],
     });
 
+    const contactInfoSerializer = new Serializer('contactInfo', {
+      attributes: ['phoneNumber', 'email', 'skype']
+    })
+
     const userSerializer = new Serializer('user', {
-      attributes: ['firstName', 'lastName', 'address'],
+      attributes: ['firstName', 'lastName', 'address', 'contactInfo'],
       address: addressSerializer,
+      contactInfo: contactInfoSerializer,
     });
 
     const result = userSerializer.serialize(rawData);
@@ -86,6 +92,7 @@ describe('Nested serializer', () => {
           number: '69',
         },
       ],
+      contactInfo: null,
     });
   });
 });
