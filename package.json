@@ -18,7 +18,7 @@
     "lodash": "~4.17.11"
   },
   "devDependencies": {
-    "coveralls": "^3.0.3",
+    "coveralls": "^3.0.11",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
