@@ -24,7 +24,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jest": "^22.4.1",
     "jest": "^24.7.1",
-    "np": "^5.0.0"
+    "np": "^6.2.2"
   },
   "engines": {
     "node": ">=6"
